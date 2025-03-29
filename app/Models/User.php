@@ -47,4 +47,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    /**
+     * Vérifie si l'utilisateur est un administrateur.
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        $adminEmails = ['massahoudkombassere8@gmail.com', 'admin2@example.com'];
+        $adminIds = [1, 2]; // IDs des administrateurs existants
+
+        return in_array($this->email, $adminEmails) || in_array($this->id, $adminIds);
+    }
 }

@@ -1,10 +1,9 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateHistoriqueColisTable extends Migration
 {
     public function up()
     {
@@ -12,8 +11,8 @@ return new class extends Migration
             $table->id(); // Identifiant unique
             $table->foreignId('colis_id')->constrained('colis')->onDelete('cascade'); // Clé étrangère vers `colis`
             $table->string('statut'); // Statut du colis à ce moment-là
+            $table->dateTime('date_historique'); // Date et heure de l'événement
             $table->text('commentaire')->nullable(); // Commentaire ou détails supplémentaires
-            $table->timestamp('date_historique')->useCurrent(); // Date de l'événement
             $table->timestamps(); // Colonnes `created_at` et `updated_at`
         });
     }
@@ -22,4 +21,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('historique_colis');
     }
-};
+}

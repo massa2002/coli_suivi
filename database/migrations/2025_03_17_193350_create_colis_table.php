@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Schema;
                 $table->foreignId('expediteur_id')->constrained('expediteurs')->onDelete('cascade');
                 $table->foreignId('destinataire_id')->constrained('destinataires')->onDelete('cascade');
                 $table->decimal('poids', 8, 2);
+                $table->decimal('frais_livraison', 8, 2)->default(0);
                 $table->string('statut')->default('en attente');
                 $table->date('date_expedition');
                 $table->date('date_livraison')->nullable();

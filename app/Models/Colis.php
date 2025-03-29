@@ -15,6 +15,7 @@ class Colis extends Model
         'expediteur_id',
         'destinataire_id',
         'poids',
+        'frais_livraison',
         'statut',
         'date_expedition',
         'date_livraison',
