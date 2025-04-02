@@ -60,6 +60,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Se connecter</button>
         </form>
+        <a href="{{ url('/administrateur') }}">Suis Admin</a>
     </div>
 
 </body>

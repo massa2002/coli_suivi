@@ -6,6 +6,9 @@ Route::get('/', function () {
     return redirect()->route('custom.login.form');
 });
 
+Route::get('/administrateur', function () {
+    return redirect('/admin');
+});
 
 Route::get('/loginVisiteur', [CustomLoginController::class, 'showLoginForm'])->name('custom.login.form');
 Route::post('/loginVisiteur', [CustomLoginController::class, 'login'])->name('custom.login');

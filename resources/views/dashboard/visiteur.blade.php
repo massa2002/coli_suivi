@@ -17,7 +17,7 @@
         .sidebar {
             width: 250px;
             height: 100vh;
-            background: #007bff;
+            background: #000;
             padding-top: 20px;
             position: fixed;
             left: 0;
@@ -57,15 +57,10 @@
     <nav class="sidebar">
         <h4>Tableau de bord</h4>
         <ul class="nav flex-column">
-            <li class="nav-item">
-                <a href="#" class="nav-link">📤 Expéditeur</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">📩 Destinataire</a>
-            </li>
+           
             <!-- Ajouter un lien vers la page "Mes Colis" -->
             <li class="nav-item">
-                <a href="{{ route('mes.colis') }}" class="nav-link">📦 Mes Colis</a>
+                <a href="#" class="nav-link">Mes Colis</a>
             </li>
             <li class="nav-item">
                 <form action="{{ route('custom.logout') }}" method="POST">
@@ -73,15 +68,38 @@
                     <button type="submit" class="btn btn-danger mt-4">Déconnexion</button>
                 </form>
             </li>
+           
+
         </ul>
     </nav>
 
     <!-- Contenu principal -->
-    <div class="content">
-        <h2>Bienvenue sur le Dashboard Visiteur</h2>
-        <p>Vous êtes connecté en tant que visiteur.</p>
-    </div>
+    <div class="content" id="main-content">
+    
 </div>
+
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    function chargerPage(url) {
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("main-content").innerHTML = html;
+            })
+            .catch(error => console.error("Erreur lors du chargement :", error));
+    }
+
+    // Charger "Mes Colis" automatiquement au démarrage
+    chargerPage("{{ route('mes.colis') }}");
+
+    // Ajouter l'événement de clic pour le menu "Mes Colis"
+    document.getElementById("mes-colis-link").addEventListener("click", function(event) {
+        event.preventDefault();
+        chargerPage("{{ route('mes.colis') }}");
+    });
+});
+</script>
 
 </body>
 </html>
